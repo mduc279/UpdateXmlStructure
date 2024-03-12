@@ -27,7 +27,8 @@ namespace UpdateXmlStruct
 
             foreach (var item in xmlFiles)
             {
-                Console.WriteLine($"Updating {item.Split('/').Last()}");
+                var fileName = item.Split('/').Last();
+                Console.WriteLine($"Updating {fileName}");
                 try
                 {
                     XmlDocument xmlDoc = new XmlDocument();
@@ -53,7 +54,7 @@ namespace UpdateXmlStruct
                     File.WriteAllText(item, outputText);
                 }
                 catch (Exception) { }
-                Console.WriteLine($"Finished {item.Split('/').Last()}");
+                Console.WriteLine($"Finished {fileName}");
             }
         }
     }
