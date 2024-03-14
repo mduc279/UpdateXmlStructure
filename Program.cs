@@ -14,7 +14,7 @@ namespace UpdateXmlStruct
             var dir = "D:\\AOD Projects\\DSS\\Aod.Dss.WebManager\\App_Data\\TemplateVersions\\";
             var xmlFiles = Directory.GetFiles(dir, "*.xml");
 
-            var listXPathToUpdate = new List<string> {
+            var listXPathToEmpty = new List<string> {
                 "//Source",
                 "//AvailableIcon",
                 "//OccupiedIcon",
@@ -23,7 +23,16 @@ namespace UpdateXmlStruct
                 "//UnselectedIndicator"
             };
 
+            var listXPathToDisable = new List<string>
+            {
+                "//IsVisible",
+                "//IsEnabled",
+                "//IsEnabledShowFromCurrent"
+            };
+
             var listPlatforms = new List<string> { "iOS", "Android", "Windows" };
+            var updateValueEmpty = string.Empty;
+            var updateValueDisable = "false";
 
             foreach (var item in xmlFiles)
             {
@@ -37,14 +46,28 @@ namespace UpdateXmlStruct
                     //Customizable part
 
                     IEnumerable<XmlNode> nodeList = new List<XmlNode>();
-                    foreach (var i in listXPathToUpdate)
+                    foreach (var i in listXPathToEmpty)
                     {
                         var textNodes = xmlDoc.SelectNodes(i);
                         nodeList = nodeList.Concat(textNodes.Cast<XmlNode>());
                     }
                     foreach (var node in nodeList)
                     {
-                        node.InnerText = string.Empty;
+                        node.InnerText = updateValueEmpty;
+                        foreach (var attr in listPlatforms)
+                        {
+                            node.Attributes[attr].Value = string.Empty;
+                        }
+                    }
+
+                    foreach (var i in listXPathToDisable)
+                    {
+                        var textNodes = xmlDoc.SelectNodes(i);
+                        nodeList = nodeList.Concat(textNodes.Cast<XmlNode>());
+                    }
+                    foreach (var node in nodeList)
+                    {
+                        node.InnerText = updateValueDisable;
                         foreach (var attr in listPlatforms)
                         {
                             node.Attributes[attr].Value = string.Empty;
