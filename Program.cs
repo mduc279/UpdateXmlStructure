@@ -12,6 +12,7 @@ namespace UpdateXmlStruct
         static void Main(string[] args)
         {
             var dir = "D:\\AOD Projects\\DSS\\Aod.Dss.WebManager\\App_Data\\TemplateVersions\\";
+            var destinationDir = "C:\\Users\\DucDoanMinh\\OneDrive - Add-On Products & Add-On Development\\Desktop\\tempTemplate";
             var xmlFiles = Directory.GetFiles(dir, "*.xml");
 
             var listXPathToEmpty = new List<string> {
@@ -74,7 +75,8 @@ namespace UpdateXmlStruct
                         }
                     }
                     var outputText = XDocument.Parse(xmlDoc.OuterXml).ToString();
-                    File.WriteAllText(item, outputText);
+                    var destination = Path.Combine(destinationDir, fileName);
+                    File.WriteAllText(destination, outputText);
                 }
                 catch (Exception) { }
                 Console.WriteLine($"Finished {fileName}");
