@@ -27,8 +27,8 @@ namespace UpdateXmlStruct
             var listXPathToDisable = new List<string>
             {
                 "//IsVisible",
-                "//IsEnabled",
-                "//IsEnabledShowFromCurrent"
+                //"//IsEnabled",
+                //"//IsEnabledShowFromCurrent"
             };
 
             var listPlatforms = new List<string> { "iOS", "Android", "Windows" };
