@@ -13,7 +13,7 @@ namespace UpdateXmlStruct
         {
             var dir = "D:\\AOD Projects\\DSS\\Aod.Dss.WebManager\\App_Data\\TemplateVersions\\";
             var destinationDir = "C:\\Users\\DucDoanMinh\\OneDrive - Add-On Products & Add-On Development\\Desktop\\tempTemplate";
-            var xmlFiles = Directory.GetFiles(dir, "*.xml");
+            var xmlFiles = Directory.GetFiles(dir, "*.xml", SearchOption.AllDirectories);
 
             var listXPathToEmpty = new List<string> {
                 "//Source",
